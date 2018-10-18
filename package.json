@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mike67hull/what-do-you-meme-fall2018#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
