@@ -10,8 +10,6 @@
       <li class="nav-item">
         <router-link class="nav-link" exact-active-class="active" to="/game">Game</router-link>
       </li>
-      <li class="nav-item">
-      </li>
     </ul>
     </nav>
 </template>
