@@ -1,14 +1,14 @@
 <template>
-<div>
+<div class="game">
     <div class="alert alert-success">
         Yay we have a game
     </div>
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <img class="card-img" src="" alt="Card image cap">
+                <img class="card-img" :src="state.picture.url" :alt="state.picture.name">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
+                  <h5 class="card-title">Flip Picture</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                  <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
@@ -38,6 +38,7 @@
             </div>
         </div>
         </div>
+        
         <div class="col-md-4">
             <div class="col-md-4">
             <div class="card">
@@ -59,18 +60,22 @@
 </style>
 
 <script>
-import { GetState } from '@/services/api_access';
+import { GetState , FlipPicture, GetMyCaptions} from '@/services/api_access';
 
 export default {
     data: function(){
         return {
            state: {
-               picture: ""
-           } 
+               picture: "",
+               players: [],
+               playedCaptions = [],
+           },
+           myCaptions = [],
         }
     },
     created: function(){
-        GetState().then(x=> this.state = x)
+        GetState().then(x=> this.state = x);
+        GetMyCaptions().then(x=> this.myCaptions = x)
     },
     methods:{
         flipPicture: function(){
