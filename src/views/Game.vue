@@ -10,12 +10,14 @@
                     <h5 class="card-header">
                         Players
                         <a @click.prevent="login" class="btn btn-sm btn-primary" :class="{disabled: playerId() !== null}">+</a>
+                       <!-- <span v-if="playerId() != null" class="badge badge-primary badge-pill">{{p.score}}</span>-->
                     </h5>
                     <ul class="list-group list-group-flush">
                         <li v-for="p in state.players" :key="p.id"
                             class="list-group-item">
                             <img />
                             <h5>{{p.name}}</h5>
+                            <span v-if="p.id == state.dealerId" class="badge badge-success">Dealer</span> &nbsp;
                             <span class="badge badge-primary badge-pill">{{p.score}}</span>
                         </li>
  
@@ -34,7 +36,6 @@
             <div class="card" >
                 <img class="card-img" :src="state.picture.url" :alt="state.picture.name">
                 <a @click.prevent="flipPicture" class="btn btn-primary">Flip Picture</a>
-
             </div>
         </div>
         <div class="col-md-4">
@@ -42,13 +43,12 @@
                 <h5 class="card-header">Played Captions</h5>
                 <ul class="list-group list-group-flush">
                     <li v-for="c in state.playedCaptions" :key="c.text"
-                        class="list-group-item">
-                        {{c.text }}
-                        <div>
+                        class="list-group-item" :class="{'list-group-item-warning' : c.isChosen}">
+                        {{c.text }}                       
                             <a  v-if="isDealer"
                                 @click.prevent="chooseCaption(c)"
                                 class="btn btn-primary btn-sm">Choose</a>
-                        </div>
+                            <span class="badge" :class="c.playerName ? 'badge-success' : 'badge-secondary'">{{c.playerName || 'Hidden'}}</span>
                     </li>
                 </ul>
             </div>
@@ -62,6 +62,7 @@
         display: flex;
         align-content: center;
         justify-content: space-between;
+        flex-wrap: wrap;
         img {
             width: 30px; height: 30px;
             margin-right: 5px;
