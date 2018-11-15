@@ -3,8 +3,8 @@
     <div class="display-3">
       <img alt="Vue logo" src="./assets/logo.png" id="logo">
       What do you Meme
-      </div>
-      <Nav />
+    </div>
+    <Nav />
     <router-view/>
   </div>
 </template>
@@ -17,7 +17,7 @@
 <script>
 // @ is an alias to /src
 import Nav from '@/components/Nav.vue'
-
+import '@/services/facebook';
 export default {
   name: 'home',
   components: {
