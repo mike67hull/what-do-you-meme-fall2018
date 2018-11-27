@@ -1,4 +1,4 @@
-const api_root = "http://localhost:80/game";
+const api_root = process.env.VUE_APP_API_ROOT;
 export let playerId = null;
 
 export function GetState(){
